@@ -3,6 +3,8 @@ package peca.org.demo.model;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -89,6 +91,21 @@ public class LocationStats implements Comparable<LocationStats>{
 
     @Override
     public int compareTo(LocationStats o) {
-        return Double.compare(calcDist(this), calcDist(o));
+            return Double.compare(calcDist(this), calcDist(o));
+        /*else
+            return Integer.compare(this.getLatestTotalCases(),o.getLatestTotalCases());*/
     }
+
+    public static Comparator<LocationStats> FruitNameComparator
+            = (ls1, ls2) -> {
+
+                Integer cases1 = ls1.getLatestTotalCases();
+                Integer cases2 = ls2.getLatestTotalCases();
+
+
+                return cases1.compareTo(cases2);
+
+
+            };
+
 }

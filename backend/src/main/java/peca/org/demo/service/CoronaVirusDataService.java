@@ -55,7 +55,7 @@ public class CoronaVirusDataService {
                 // System.out.println(pom2+ "         " +(pom-pom2));
 
                 locationStats.setCasesToday(pom-pom2);
-            } catch(NumberFormatException ex){ // handle your exception
+            } catch(NumberFormatException ex){
 
                 locationStats.setLatestTotalCases(Integer.parseInt(record.get(record.size()-2)));
                 locationStats.setCasesToday(0);
@@ -179,5 +179,27 @@ public class CoronaVirusDataService {
 
 
     }
+
+    public static ArrayList<LocationStats> sortedByNumberOfCases(){
+        ArrayList<LocationStats> list = new ArrayList(allStats);
+        int length = list.size();
+        for (int i = 0; i < length-1 ; i++) {
+            for (int j = 0; j < length-i-1; j++) {
+                if(list.get(j).getLatestTotalCases() < list.get(j+1).getLatestTotalCases()){
+                    LocationStats temp1 = list.get(j);
+                    LocationStats temp2 = list.get(j+1);
+                    list.remove(j);
+                    list.add(j, temp2);
+                    list.remove(j+1);
+                    list.add(j+1, temp1);
+                }
+            }
+
+        }
+
+        return list;
+    }
+
+
 
 }

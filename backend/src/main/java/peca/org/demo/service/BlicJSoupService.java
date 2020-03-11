@@ -103,9 +103,6 @@ public class BlicJSoupService {
 
     }
 
-
-
-
     public List<NewsModel> blicNews(int of, int lim){
         return news.subList(of*lim, of*lim + lim);
     }
