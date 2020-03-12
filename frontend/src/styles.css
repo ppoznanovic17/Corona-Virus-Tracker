@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-color: #eee;
+  color: #000a;
+}
+
+.container{
+  width: 85%;
+}
+
+.navbar{
+  margine-bottom: 1px solid black;
+  background-color: #a001;
+}
+
+.cases{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 8vh;
+
+}
+
+.card-header {
+  text-align: center;
+  font-size: 2rem;
+}
+.card-title{
+  font-size: 2rem;
+  text-align: center;
+}
+
+.pom{
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+
+.number{
+  font-size: 1rem;
+}
+
+.second{
+  font-size: 1.5rem;
+}
+
+.perc{
+  font-size: 0.9rem;
+  color: #000a;
+;
+}
+
+table{
+  width: 40%;
+}
+
+.table-div{
+  display: flex;
+}
+
+.flex-table{
+  flex-grow: 2;
+}
+
+.blicimg{
+  width: 15%;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.blic{
+  font-size: 1.1rem;
+}
+
+.btn{
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: white;
+  background-color: #d01b20;
+  width: 15%;
+}
+
+.btn:hover{
+  background-color: #d01b2099;
+  color: white;
+}
+
+.blic_card{
+  margin-top: 0.5rem;
+}
+

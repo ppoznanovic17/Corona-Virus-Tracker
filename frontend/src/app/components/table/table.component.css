@@ -1,0 +1,15 @@
+.link{
+  color: #000a;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.head{
+  color: #000;
+}
+
+.active{
+  background-color: #d01b2099;
+  color: white;
+  border: 1px solid red;
+}

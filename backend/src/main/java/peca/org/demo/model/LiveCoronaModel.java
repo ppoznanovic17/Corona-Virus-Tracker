@@ -37,7 +37,8 @@ public class LiveCoronaModel {
         this.deaths = deaths;
 
         allCases = mildCondition + seriousCondition + recovered + deaths;
-
+        activeCases = mildCondition + seriousCondition;
+        closedCases = recovered + deaths;
 
         this.mildPercent = (int)Math.round((mildCondition*1.0)*100 / (mildCondition+seriousCondition));
         this.seriousPercent =  (int)Math.round((seriousCondition*1.0)*100 / (mildCondition+seriousCondition));

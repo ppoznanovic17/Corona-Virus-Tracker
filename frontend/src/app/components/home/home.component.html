@@ -1,0 +1,65 @@
+
+    <h1 class="cases" >Coronavirus Cases:</h1>
+    <h1 class="cases" > {{putComma(live.allCases)}}</h1>
+    <hr>
+
+    <div class="card-deck">
+      <div class="card border-secondary mb-3" style="max-width: 50rem;">
+        <div class="card-header">ACTIVE CASES</div>
+        <div class="card-body text-secondary">
+          <h5 class="card-title">{{putComma(live.activeCases)}}</h5>
+          <p class="pom">Currently Infected Patients</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title second" style="color: #00f7">{{putComma(live.mildCondition)}}<span class="perc">({{live.mildPercent}}%)</span>  </h5>
+                  <p class="card-text" style="text-align: center; font-size: 14px">in Mild conditions</p>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title second" style="color: #f009">{{putComma(live.seriousCondition)}}<span class="perc">({{live.seriousPercent}}%)</span>  </h5>
+                  <p class="card-text" style="text-align: center; font-size: 14px">Serious or Critical</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-secondary mb-3" style="max-width: 50rem;">
+        <div class="card-header">CLOSED CASES</div>
+        <div class="card-body text-secondary">
+          <h5 class="card-title">{{live.closedCases}}</h5>
+          <p class="pom card-text">Cases which had an outcome:</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title second" style="color: #0f0a">{{putComma(live.recovered)}}<span class="perc">({{live.recoveredPercent}}%)</span>  </h5>
+                  <p class="card-text" style="text-align: center; font-size: 14px">in Recovered/Discharged</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title second" style="color: #000">{{putComma(live.deaths)}}<span class="perc">({{live.deathPercent}}%)</span>  </h5>
+                  <p class="card-text" style="text-align: center; font-size: 14px">Deaths</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+

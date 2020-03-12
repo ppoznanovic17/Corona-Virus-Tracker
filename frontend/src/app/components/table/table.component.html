@@ -1,0 +1,113 @@
+<h3 style="margin-top: 20px">Countries with most cases:</h3>
+<div class="table-div">
+  <div class="flex-table">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">State</th>
+        <th scope="col">Country</th>
+        <th scope="col">Cases</th>
+        <th scope="col">Cases Today</th>
+        <th scope="col">Deaths</th>
+        <th scope="col">Deaths today</th>
+        <th scope="col">Recovered</th>
+        <th scope="col">Recovered Today</th>
+
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of mostCases">
+          <td>{{country.state}}</td>
+          <td>{{country.country}}</td>
+          <td style="background-color: #f602">{{pom(country.latestTotalCases)}}</td>
+          <td>{{pom(country.casesToday)}}</td>
+          <td style="background-color: #f002">{{pom(country.latestTotalDeaths)}}</td>
+          <td>{{pom(country.recoveriesToday)}}</td>
+          <td style="background-color: #0f02">{{pom(country.latestTotalRecovered)}}</td>
+          <td>{{pom(country.deathsToday)}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn" >See all</button>
+    <br><br>
+    <h3 style="margin-top: 20px">Countries nearest to Serbia:</h3>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">State</th>
+        <th scope="col">Country</th>
+        <th scope="col">Cases</th>
+        <th scope="col">Cases Today</th>
+        <th scope="col">Deaths</th>
+        <th scope="col">Deaths today</th>
+        <th scope="col">Recovered</th>
+        <th scope="col">Recovered Today</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let country of distance">
+        <td>{{country.state}}</td>
+        <td>{{country.country}}</td>
+        <td style="background-color: #f602">{{pom(country.latestTotalCases)}}</td>
+        <td>{{pom(country.casesToday)}}</td>
+        <td style="background-color: #f002">{{pom(country.latestTotalDeaths)}}</td>
+        <td>{{pom(country.recoveriesToday)}}</td>
+        <td style="background-color: #0f02">{{pom(country.latestTotalRecovered)}}</td>
+        <td>{{pom(country.deathsToday)}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn" >See all</button>
+
+  </div>
+  <div class="flex-news" style="width: 100%; margin-left: 1rem">
+
+    <div style="background-color: #d01b20; width: 100%; color: white;height: 2.5rem">
+      <a href="" style="width: 100%">
+        <img class="blicimg" src="https://studiob.rs/wp-content/uploads/2017/09/blic-logo.jpg"  alt="">
+        <span style="color: white; width: 74%; font-size: 1.8rem; float: right">News from Serbia</span>
+      </a>
+    </div>
+    <br>
+
+    <div style="width: 100%; margin-top: 1rem;margin-left: 1rem">
+      <button (click)="decrease()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; float: left; background-color: #0005"><</button>
+      <div style="float: left" *ngFor="let itr of iteratorList">
+        <button [className]="this.currentPage == itr.iterator+1 ? 'btn active' : 'btn'" (click)="setPage(itr.iterator+1)" id="{{itr.iterator}}" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px">{{itr.iterator + 1}}</button>
+      </div>
+      <button (click)="increase()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; background-color: #0005" >></button>
+
+    </div>
+
+    <div class="card blic_card"  *ngFor="let new of blic" style="width: 100%; margin-left: 1rem; padding: 0;">
+      <a href="{{new.link}}" target="_blank">
+        <img src="{{new.picture}}" class="card-img-top" alt="...">
+        <div class="card-body" style="height: 19rem">
+          <h5 class="card-title blic head">{{new.title}}</h5>
+          <p class="card-text link">{{formatText(new.description)}}</p>
+          <p class="card-text"><small class="text-muted">{{new.date}}</small></p>
+        </div>
+      </a>
+
+    </div>
+    <div style="width: 100%; margin-top: 1rem;margin-left: 1rem">
+      <button (click)="decrease()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; float: left; background-color: #0005"><</button>
+      <div style="float: left" *ngFor="let itr of iteratorList">
+        <button [className]="this.currentPage == itr.iterator+1 ? 'btn active' : 'btn'" (click)="setPage(itr.iterator+1)" id="{{itr.iterator}}" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px">{{itr.iterator + 1}}</button>
+      </div>
+      <button (click)="increase()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; background-color: #0005" >></button>
+
+    </div>
+
+
+  </div>
+
+
+
+  <div>
+
+  </div>
+
+
+</div>

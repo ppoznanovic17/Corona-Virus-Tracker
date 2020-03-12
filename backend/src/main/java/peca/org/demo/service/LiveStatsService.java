@@ -17,7 +17,7 @@ public class LiveStatsService {
 
     private static LiveCoronaModel lcm = new LiveCoronaModel();
 
-    @Scheduled(fixedDelay = 900000, initialDelay = 0)
+    @Scheduled(fixedDelay = 10000, initialDelay = 0)
     public static void live() throws IOException {
 
 

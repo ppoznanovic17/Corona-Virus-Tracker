@@ -1,6 +1,7 @@
 package peca.org.demo.ctrl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import peca.org.demo.model.LocationStats;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class FetchDataCtrl {
 
@@ -21,6 +23,12 @@ public class FetchDataCtrl {
         return CoronaVirusDataService.allStats;
     }
 
+    @GetMapping(path = "/distance10")
+    public List<LocationStats> nearSerbia10(){
+        Collections.sort(CoronaVirusDataService.allStats);
+        return CoronaVirusDataService.allStats.subList(1,16);
+    }
+
     @GetMapping(path = "/distance/reverse")
     public List<LocationStats> ReverseNearSerbia(){
 
@@ -28,14 +36,15 @@ public class FetchDataCtrl {
         return CoronaVirusDataService.allStats;
     }
 
-    @GetMapping(path = "/all")
-    public String alltest(){
-        return LocationStats.allString();
-    }
 
     @GetMapping(path = "/cases")
     public ArrayList<LocationStats> allByCases(){
         return CoronaVirusDataService.sortedByNumberOfCases();
+    }
+
+    @GetMapping(path = "/cases10")
+    public List<LocationStats> allByCases10(){
+        return CoronaVirusDataService.sortedByNumberOfCases().subList(0,15);
     }
 
 }
