@@ -34,6 +34,8 @@ export class TableComponent implements OnInit {
       this.refresh()
     this.getBlic(this.currentPage,this.limit)
 
+    setInterval(() => {this.slider()}, 10000)
+
   }
 
   refresh() {
@@ -121,6 +123,16 @@ export class TableComponent implements OnInit {
 
   }
 
+  slider(){
+    if(this.currentPage < 5){
+      this.currentPage++
+    }else{
+      this.currentPage = 1
+    }
+
+   this.getBlic(this.currentPage, this.limit)
+
+  }
 }
 
 export class Iterator {

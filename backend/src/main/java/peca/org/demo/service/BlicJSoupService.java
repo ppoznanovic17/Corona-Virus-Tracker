@@ -19,7 +19,7 @@ public class BlicJSoupService {
 
     private static String blicUrl = "https://www.blic.rs/search?q=korona";
 
-    @Scheduled(fixedDelay = 900000, initialDelay = 0)
+    @Scheduled(fixedDelay = 60000, initialDelay = 0)
     private static void blic()throws IOException {
 
         int numberOfNews = 23;
