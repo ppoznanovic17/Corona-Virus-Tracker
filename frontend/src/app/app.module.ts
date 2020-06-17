@@ -7,7 +7,6 @@ import { HomeComponent } from './components/home/home.component';
 import {TableComponent} from './components/table/table.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
-import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
@@ -21,7 +20,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

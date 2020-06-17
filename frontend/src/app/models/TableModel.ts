@@ -1,16 +1,24 @@
 export class TableModel {
 
-  public state:String
-  public country:String
 
-  public latestTotalCases:number
-  public latestTotalRecovered:number
-  public latestTotalDeaths:number
-  public latestActiveCases:number
+  public position:String
+  public  country:String
 
-  public casesToday:number
-  public recoveriesToday:number
-  public deathsToday:number
+  public  totalCases:String
+  public  newCases:String
+  public  totalDeaths:String
+  public  newDeaths:String
 
+  public  totalRecovered:String
+  public  activeCases:String
+  public  seriousCritical:String
+
+  public  casesPerMillion:String
+  public  deathsPerMillion:String
+
+  public  totalTests:String
+  public  testsPerMillion:String
+
+  public population:String
 
 }

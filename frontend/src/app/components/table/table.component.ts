@@ -4,6 +4,7 @@ import {TableServiceService} from '../../service/table-service.service';
 import {BlicModel} from '../../models/BlicModel';
 import {BlicServiceService} from '../../service/blic-service.service';
 import {iterator} from 'rxjs/internal-compatibility';
+import {element} from "protractor";
 
 @Component({
   selector: 'app-table',
@@ -12,19 +13,19 @@ import {iterator} from 'rxjs/internal-compatibility';
 })
 export class TableComponent implements OnInit {
 
-  private blicSize = 15
+  private blicSize = 21
   private currentPage = 1
   private limit = 3
   private iterator = this.blicSize/this.limit
   private iteratorList: Iterator[] = new Array()
 
+  private seeMoreBool = false
 
 
-
-
-  private distance: TableModel[]
   private mostCases: TableModel[]
   private blic: BlicModel[]
+
+  private interval
 
   constructor(private service: TableServiceService,
               private blicservice: BlicServiceService) { }
@@ -34,28 +35,57 @@ export class TableComponent implements OnInit {
       this.refresh()
     this.getBlic(this.currentPage,this.limit)
 
-    setInterval(() => {this.slider()}, 10000)
+    this.interval = setInterval(() => {this.slider()}, 10000)
 
   }
 
   refresh() {
-    this.getDistance()
     this.getMostCases()
 
   }
 
+  seeMore() {
+    this.service.getTopAll().subscribe(
+      res =>{
+        this.mostCases = res
+        this.limit = 18
+        this.currentPage = 1
+        this.blicservice.getNews(1, this.limit).subscribe(
+          res => {
+            this.blic = res
+            this.seeMoreBool = true
+            clearInterval(this.interval)
+          }, error => {
+            console.log(error)
+          }
+        )
+      }, error => {
 
-  getDistance(){
-    this.service.getNearSerbia().subscribe(
-      res => {
-        //console.log(res)
-        this.distance = res
-      },
-      error => {
-        console.log(error.toString())
       }
     )
   }
+
+  seeLess() {
+    this.service.getTop().subscribe(
+      res =>{
+        this.mostCases = res
+        this.limit = 3
+        this.currentPage = 1
+        this.blicservice.getNews(this.currentPage, this.limit).subscribe(
+          res => {
+            this.blic = res
+            this.seeMoreBool = false
+            this.interval = setInterval(() => {this.slider()}, 10000)
+          }, error => {
+            console.log(error)
+          }
+        )
+      }, error => {
+
+      }
+    )
+  }
+
 
   getMostCases() {
     this.service.getTop().subscribe(
@@ -81,12 +111,8 @@ export class TableComponent implements OnInit {
     )
   }
 
-  pom(x) {
-    if(x==0){
-      return ''
-    }
-    return x
-  }
+
+
 
   formatText(text:String){
     if(text.length > 300 ) {
@@ -100,13 +126,18 @@ export class TableComponent implements OnInit {
 
     if(this.currentPage > 1){
       this.currentPage--;
+    }else {
+      this.currentPage = 7
     }
     this.getBlic(this.currentPage, this.limit)
   }
 
   increase(){
-    if(this.currentPage < 5){
+    if(this.currentPage < 7){
       this.currentPage++;
+    }
+    else{
+      this.currentPage = 1
     }
     this.getBlic(this.currentPage, this.limit)
   }

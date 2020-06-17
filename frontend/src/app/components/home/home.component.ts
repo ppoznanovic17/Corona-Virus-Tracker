@@ -36,21 +36,24 @@ export class HomeComponent implements OnInit {
   }
 
   putComma(x:number){
-    if( x > 1000) {
-      let pom = x/1000
-       let str = Math.floor(pom) + ','
-      pom = x%1000
-      if(pom < 10){
-        str += '00' + pom
-      }else if(pom < 100){
-        str += '0' + pom
+    let str = '' + x
+    let strWithCommas = ''
+    let j=0
+    for(let i = str.length-1; i>=0; i-- ){
+      if(j%3 == 2){
+        strWithCommas += str.charAt(i) + ','
       }else{
-        str += pom
+        strWithCommas += str.charAt(i)
       }
-      return str
-
+      j++
     }
-    return x
+
+    let helper = strWithCommas.split('').reverse().join('')
+    if( helper.startsWith(',')){
+      return helper.substring(1, helper.length)
+    }
+    return helper
+
   }
 
 }

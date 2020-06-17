@@ -1,64 +1,43 @@
 <h3 style="margin-top: 20px">Countries with most cases:</h3>
+<button *ngIf="!seeMoreBool" (click)="seeMore()" type="button" class="btn" >See all</button>
+<button *ngIf="seeMoreBool" (click)="seeLess()" type="button" class="btn" >See less</button>
 <div class="table-div" >
   <div class="flex-table" style="padding-right: 5px">
     <table class="table">
       <thead>
       <tr>
-        <th scope="col">State</th>
+        <th scope="col">#</th>
         <th scope="col">Country</th>
         <th scope="col">Cases</th>
         <th scope="col">Cases Today</th>
         <th scope="col">Deaths</th>
         <th scope="col">Deaths today</th>
         <th scope="col">Recovered</th>
-        <th scope="col">Recovered Today</th>
+        <th scope="col">Active Cases</th>
+        <th scope="col">Serious, Critical</th>
 
       </tr>
       </thead>
       <tbody>
         <tr *ngFor="let country of mostCases">
-          <td>{{country.state}}</td>
-          <td>{{country.country}}</td>
-          <td style="background-color: #f602">{{pom(country.latestTotalCases)}}</td>
-          <td>{{pom(country.casesToday)}}</td>
-          <td style="background-color: #f002">{{pom(country.latestTotalDeaths)}}</td>
-          <td>{{pom(country.recoveriesToday)}}</td>
-          <td style="background-color: #0f02">{{pom(country.latestTotalRecovered)}}</td>
-          <td>{{pom(country.deathsToday)}}</td>
+
+          <td>{{country.position}}</td>
+          <td style="background-color: #f602">{{country.country}}</td>
+          <td>{{country.totalCases}}</td>
+          <td style="background-color: #f002">{{country.newCases}}</td>
+          <td>{{country.totalDeaths}}</td>
+          <td style="background-color: #0f02">{{country.newDeaths}}</td>
+          <td>{{country.totalRecovered}}</td>
+          <td>{{country.activeCases}}</td>
+          <td>{{country.seriousCritical}}</td>
+
+
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn" >See all</button>
+    <button *ngIf="!seeMoreBool" (click)="seeMore()" type="button" class="btn" >See all</button>
+    <button *ngIf="seeMoreBool" (click)="seeLess()" type="button" class="btn" >See less</button>
     <br><br>
-    <h3 style="margin-top: 20px">Countries nearest to Serbia:</h3>
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">State</th>
-        <th scope="col">Country</th>
-        <th scope="col">Cases</th>
-        <th scope="col">Cases Today</th>
-        <th scope="col">Deaths</th>
-        <th scope="col">Deaths today</th>
-        <th scope="col">Recovered</th>
-        <th scope="col">Recovered Today</th>
-
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let country of distance">
-        <td>{{country.state}}</td>
-        <td>{{country.country}}</td>
-        <td style="background-color: #f602">{{pom(country.latestTotalCases)}}</td>
-        <td>{{pom(country.casesToday)}}</td>
-        <td style="background-color: #f002">{{pom(country.latestTotalDeaths)}}</td>
-        <td>{{pom(country.recoveriesToday)}}</td>
-        <td style="background-color: #0f02">{{pom(country.latestTotalRecovered)}}</td>
-        <td>{{pom(country.deathsToday)}}</td>
-      </tr>
-      </tbody>
-    </table>
-    <button type="button" class="btn" >See all</button>
 
   </div>
   <div style="height: 200vh; border-left: 1px solid #0002; width: 1px"></div>
@@ -72,7 +51,7 @@
     </div>
     <br>
 
-    <div style="width: 100%; margin-top: 1rem;margin-left: 1rem">
+    <div *ngIf="!seeMoreBool" style="width: 100%; margin-top: 1rem;margin-left: 1rem">
       <button (click)="decrease()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; float: left; background-color: #0005"><</button>
       <div style="float: left" *ngFor="let itr of iteratorList">
         <button [className]="this.currentPage == itr.iterator+1 ? 'btn active' : 'btn'" (click)="setPage(itr.iterator+1)" id="{{itr.iterator}}" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px">{{itr.iterator + 1}}</button>
@@ -92,7 +71,7 @@
       </a>
 
     </div>
-    <div style="width: 100%; margin-top: 1rem;margin-left: 1rem; margin-bottom: 2rem">
+    <div *ngIf="!seeMoreBool" style="width: 100%; margin-top: 1rem;margin-left: 1rem; margin-bottom: 2rem">
       <button (click)="decrease()" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px; float: left; background-color: #0005"><</button>
       <div style="float: left" *ngFor="let itr of iteratorList">
         <button [className]="this.currentPage == itr.iterator+1 ? 'btn active' : 'btn'" (click)="setPage(itr.iterator+1)" id="{{itr.iterator}}" type="button" class="btn" style="width: 35px; padding: auto; margin: 2px">{{itr.iterator + 1}}</button>
